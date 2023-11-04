@@ -259,12 +259,21 @@ img .slider1 {
 
 /*-- navigation--*/
 
-.navigation.navbar {
+.navbar {
      float: right;
-     background: #fff;
+     background: #39cbaf !important;
      clear: both;
-     padding: 23px 25px !important;
-     border-radius: 64px;
+     padding: .5rem 1rem !important;
+}
+
+.navbar .nav-item > a {
+     color: white;
+}
+
+.navbar .navbar-nav > .nav-item > a:last-child {
+     color: white;
+     display: block;
+     margin: 10px auto;
 }
 
 .navigation.navbar-dark .navbar-nav .nav-link {
@@ -314,11 +323,13 @@ img .slider1 {
      background: transparent;
      position: absolute;
      z-index: 999;
-     border-top: #090102 solid 11px;
+     // border-top: #090102 solid 11px;
 }
 
-.logo {
-     padding-top: 14px;
+.logo-image {
+     height: 6vh;
+     object-fit: cover;
+     width: auto;
 }
 
 
@@ -834,7 +845,7 @@ ul.location_icon li a {
 
 .position_head .header {
      position: inherit;
-     background: #03cafc;
+     /*background: #39cbaf;*/
 }
 
 .position_head .glasses,

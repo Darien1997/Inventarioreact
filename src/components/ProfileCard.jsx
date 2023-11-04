@@ -1,7 +1,6 @@
-import React, { useState } from 'react'
-import { FcLock } from "react-icons/fc";
-import { FaUser, FaSync } from "react-icons/fa";
-import { useHistory } from "react-router-dom";
+import React, {useState} from 'react'
+import {FaUser} from "react-icons/fa";
+import {useHistory} from "react-router-dom";
 import firebase from "firebase";
 import "firebase/auth";
 
@@ -11,7 +10,7 @@ import Password from './Password';
 
 const ProfileCard = () => {
 
-    const { user } = useUser();
+    const {user} = useUser();
     const history = useHistory();
     const [modalConfig, setModalConfig] = useState({show: false, text: '', type: '', showButton: true})
     const [showPassword, setShowPassword] = useState(false);
@@ -32,38 +31,42 @@ const ProfileCard = () => {
     }
 
     return (
-        <div>
-            <div className="profileContainer">
-                { user?.photoURL ? <img src={user?.photoURL} alt="Usuario de My Inventory" className="imgProfile"/> : <FaUser size={60} className="imgProfile"/> }
-                <div className="data">
-                    <h4>{ user?.displayName }</h4>
-                    <h5>{ user?.email }</h5>
-                </div>
-                <div className="menu">
-                    <ul>
-                        <li onClick={() => history.push("/profile")}>
-                            
-                            <h4>Mi Perfil</h4>
+        <>
+            <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+               aria-expanded="false">
+                {user?.photoURL ? <img src={user?.photoURL} alt="Usuario de My Inventory" className="imgProfile"/> :
+                    <FaUser size={20} className="imgProfile"/>} {user?.displayName}
+            </a>
+            <ul className="dropdown-menu dropdown-menu-start">
+                <li>
+                    <a className="dropdown-item" href="#">
+                        {user?.email}
+                    </a>
+                </li>
+                <li onClick={() => history.push("/profile")}>
+                    <a className="dropdown-item" href="#">
+                        Mi Perfil
+                    </a>
+                </li>
+                {
+                    user?.providerData[0].providerId === 'password' ? (
+                        <li onClick={() => setShowPassword(true)}>
+                            <a className="dropdown-item" href="#">
+                                Cambiar contraseña
+                            </a>
                         </li>
-                        {
-                            user?.providerData[0].providerId === 'password' ? (
-                                <li onClick={() => setShowPassword(true)}>
-                                    
-                                    <h4>Cambiar contraseña</h4>
-                                </li>
-                            ) : null
-                        }
-                        <li onClick={signOut}>
-                            
-                            <h4>Cerrar Sesión</h4>
-                        </li>
+                    ) : null
+                }
+                <li onClick={signOut}>
+                    <a className="dropdown-item" href="#">
+                        Cerrar Sesión
+                    </a>
+                </li>
 
-                    </ul>
-                </div>
-            </div>
-            
+            </ul>
+
             <Password showPassword={showPassword} setShowPassword={setShowPassword}/>
-        </div>
+        </>
     )
 }
 

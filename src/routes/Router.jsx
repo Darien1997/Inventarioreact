@@ -37,7 +37,7 @@ export default function App() {
               <Switch>
                 <Route path="/login" exact><Login mode={mode} setMode={setMode}/></Route>
                 <Route path="/pricing" exact><Pricing mode={mode} setMode={setMode}/></Route>
-                <Route path="/" exact><Home mode={mode} setMode={setMode}/></Route>
+                <Route path="/*" exact><Home mode={mode} setMode={setMode}/></Route>
                 <Route><Error/></Route>
               </Switch>
             )
